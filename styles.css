@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #020024, #090979, #00d4ff);
+  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  animation: backgroundTransition 20s infinite alternate;
+}
+
+@keyframes backgroundTransition {
+  0% {
+    background: linear-gradient(135deg, #020024, #090979, #00d4ff);
+  }
+  25% {
+    background: linear-gradient(135deg, #190a8d, #7303c0, #ff8a00);
+  }
+  50% {
+    background: linear-gradient(135deg, #03001e, #4e54c8, #8e2de2);
+  }
+  75% {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  }
+  100% {
+    background: linear-gradient(135deg, #020024, #090979, #00d4ff);
+  }
+}
+
+h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px #ff6b6b, 0 0 30px #ffc371;
+  animation: textPulse 2s infinite;
+}
+
+@keyframes textPulse {
+  0%, 100% {
+    text-shadow: 0 0 20px #ff6b6b, 0 0 30px #ffc371;
+  }
+  50% {
+    text-shadow: 0 0 30px #ff6b6b, 0 0 40px #ffc371;
+  }
+}
+
+p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: #ffcc00;
+  text-shadow: 0 0 10px #fff;
+}
+
+.countdown {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ff1493;
+  text-shadow: 0 0 15px #ff1493, 0 0 25px #ff69b4;
+}
+
+.welcome {
+  font-size: 5rem;
+  margin-top: 1rem;
+  color: #ffd700;
+  text-shadow: 0 0 30px #ffd700, 0 0 60px #ff4500, 0 0 90px #ff6347;
+  animation: welcomeEffect 3s infinite alternate, sparkleEffect 1s infinite;
+}
+
+@keyframes welcomeEffect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes sparkleEffect {
+  0%, 100% {
+    text-shadow: 0 0 30px #ffd700, 0 0 60px #ff4500, 0 0 90px #ff6347;
+  }
+  50% {
+    text-shadow: 0 0 40px #ffdab9, 0 0 80px #ff4500, 0 0 120px #ff6347;
+  }
+}
+
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(0deg, rgba(255,255,255,0), rgba(255,255,255,0.8));
+  animation: shooting 3s ease-in-out infinite;
+  opacity: 0;
+}
+
+@keyframes shooting {
+  0% {
+    transform: translate(0, 0) rotate(45deg);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-700px, 700px) rotate(45deg);
+    opacity: 0;
+  }
+} 
