@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload & Download ZIP</title>
+    <title>Upload ZIP to GitHub</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
         .container { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
@@ -12,16 +12,22 @@
 </head>
 <body>
     <div class="container">
-        <h2>Upload & Download ZIP</h2>
+        <h2>Upload ZIP to GitHub</h2>
         <input type="file" id="fileInput" accept=".zip">
         <button onclick="uploadFile()">Upload</button>
-        <br><br>
-        <a id="downloadLink" style="display: none;" download>Download File</a>
+        <p id="status"></p>
+        <a id="downloadLink" style="display: none;" target="_blank">Download File</a>
     </div>
 
     <script>
-        function uploadFile() {
+        const GITHUB_USERNAME = "hoa2995"; // Thay bằng GitHub của bạn
+        const REPO_NAME = "khoavuongkhoavuong"; // Thay bằng repository để lưu file
+        const BRANCH = "main"; // Nhánh chính (hoặc nhánh khác)
+        const GITHUB_TOKEN = "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"; // Thay bằng token GitHub (bảo mật)
+
+        async function uploadFile() {
             const fileInput = document.getElementById("fileInput");
+            const status = document.getElementById("status");
             const downloadLink = document.getElementById("downloadLink");
 
             if (fileInput.files.length === 0) {
@@ -30,11 +36,37 @@
             }
 
             const file = fileInput.files[0];
-            const url = URL.createObjectURL(file);
-            
-            downloadLink.href = url;
-            downloadLink.innerText = "Download " + file.name;
-            downloadLink.style.display = "block";
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = async () => {
+                const base64Data = reader.result.split(",")[1];
+
+                const uploadPath = `uploads/${file.name}`; // Lưu file vào thư mục "uploads"
+                const apiUrl = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/${uploadPath}`;
+
+                const response = await fetch(apiUrl, {
+                    method: "PUT",
+                    headers: {
+                        "Authorization": `token ${GITHUB_TOKEN}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        message: `Upload ${file.name}`,
+                        content: base64Data,
+                        branch: BRANCH
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    status.innerText = "Upload successful!";
+                    downloadLink.href = data.content.download_url;
+                    downloadLink.innerText = "Download " + file.name;
+                    downloadLink.style.display = "block";
+                } else {
+                    status.innerText = "Upload failed.";
+                }
+            };
         }
     </script>
 </body>
