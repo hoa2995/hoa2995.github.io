@@ -1,114 +1,1788 @@
+@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas&display=swap');
+* {
+    font-family: 'Mountains of Christmas', serif;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+:root {
+    --red: #dc3d2a;
+    --blue: #87ceeb;
+}
+
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #020024, #090979, #00d4ff);
-  color: #fff;
-  text-align: center;
+  background: linear-gradient(135deg, #143b64 0%, #1e5c8d 50%, #143b64 100%);
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 0 L60 35 L95 35 L65 55 L75 90 L50 70 L25 90 L35 55 L5 35 L40 35 Z" fill="%23ffffff11"/></svg>'), linear-gradient(135deg, #143b64 0%, #1e5c8d 50%, #143b64 100%);
+  background-size: 100px 100px, cover;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  position: relative;
   overflow: hidden;
-  animation: backgroundTransition 20s infinite alternate;
 }
 
-@keyframes backgroundTransition {
-  0% {
-    background: linear-gradient(135deg, #020024, #090979, #00d4ff);
-  }
-  25% {
-    background: linear-gradient(135deg, #190a8d, #7303c0, #ff8a00);
-  }
-  50% {
-    background: linear-gradient(135deg, #03001e, #4e54c8, #8e2de2);
-  }
-  75% {
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  }
-  100% {
-    background: linear-gradient(135deg, #020024, #090979, #00d4ff);
-  }
+/* Thêm hiệu ứng đèn Giáng sinh trên nền */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(90deg, 
+        var(--red) 0px, 
+        var(--red) 10px, 
+        var(--blue) 10px, 
+        var(--blue) 20px, 
+        #28a745 20px, 
+        #28a745 30px,
+        gold 30px,
+        gold 40px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    animation: twinkle 1.5s infinite alternate;
+    z-index: 20;
 }
 
-h1 {
-  font-size: 4rem;
-  margin-bottom: 1rem;
-  text-shadow: 0 0 20px #ff6b6b, 0 0 30px #ffc371;
-  animation: textPulse 2s infinite;
+/* Thêm hiệu ứng đèn Giáng sinh dưới chân trang */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(90deg, 
+        var(--blue) 0px, 
+        var(--blue) 10px, 
+        var(--red) 10px, 
+        var(--red) 20px, 
+        gold 20px, 
+        gold 30px,
+        #28a745 30px,
+        #28a745 40px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    animation: twinkle 1.5s infinite alternate;
+    animation-delay: 0.75s;
+    z-index: 20;
 }
 
-@keyframes textPulse {
-  0%, 100% {
-    text-shadow: 0 0 20px #ff6b6b, 0 0 30px #ffc371;
-  }
-  50% {
-    text-shadow: 0 0 30px #ff6b6b, 0 0 40px #ffc371;
-  }
+@keyframes twinkle {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
 }
 
-p {
-  font-size: 1.5rem;
+/* Thêm hình ảnh cây thông nền */
+.bg-trees {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    height: 120px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="100" viewBox="0 0 80 100"><path d="M40 0 L55 30 L50 30 L65 60 L60 60 L80 100 L0 100 L20 60 L15 60 L30 30 L25 30 Z" fill="%23064420"/><rect x="35" y="80" width="10" height="20" fill="%23654321"/></svg>');
+    background-repeat: repeat-x;
+    background-size: 80px 100px;
+    background-position: bottom;
+    opacity: 0.7;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  width: 90%;
+  z-index: 10;
+  position: relative;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 2rem;
-  color: #ffcc00;
-  text-shadow: 0 0 10px #fff;
+  text-align: center;
 }
 
-.countdown {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #ff1493;
-  text-shadow: 0 0 15px #ff1493, 0 0 25px #ff69b4;
+.profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid white;
 }
 
-.welcome {
-  font-size: 5rem;
-  margin-top: 1rem;
-  color: #ffd700;
-  text-shadow: 0 0 30px #ffd700, 0 0 60px #ff4500, 0 0 90px #ff6347;
-  animation: welcomeEffect 3s infinite alternate, sparkleEffect 1s infinite;
+.profile h1 {
+  margin: 0.5rem 0;
+  font-size: 2rem;
 }
 
-@keyframes welcomeEffect {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
+.profile p {
+  margin: 0.25rem 0 1.5rem;
+  opacity: 0.8;
+  font-size: 1rem;
 }
 
-@keyframes sparkleEffect {
-  0%, 100% {
-    text-shadow: 0 0 30px #ffd700, 0 0 60px #ff4500, 0 0 90px #ff6347;
-  }
-  50% {
-    text-shadow: 0 0 40px #ffdab9, 0 0 80px #ff4500, 0 0 120px #ff6347;
-  }
+button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-.shooting-star {
-  position: absolute;
-  width: 2px;
-  height: 100px;
-  background: linear-gradient(0deg, rgba(255,255,255,0), rgba(255,255,255,0.8));
-  animation: shooting 3s ease-in-out infinite;
-  opacity: 0;
+.snowfall-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
 }
 
-@keyframes shooting {
-  0% {
-    transform: translate(0, 0) rotate(45deg);
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.8;
-  }
-  100% {
-    transform: translate(-700px, 700px) rotate(45deg);
+* {
+    font-family: 'Mountains of Christmas', serif;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --red: #dc3d2a;
+    --blue: #87ceeb;
+}
+
+.overflow {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    border-radius: 12px;
+}
+
+button {
+    position: relative;
+    width: 150px;
+    height: 50px;
+    border: 0px solid;
+    outline: 0px solid;
+    cursor: pointer;
+    background: var(--blue);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    display: block;
+    overflow: visible;
+}
+
+body {
+    background: linear-gradient(135deg, #143b64 0%, #1e5c8d 50%, #143b64 100%);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 0 L60 35 L95 35 L65 55 L75 90 L50 70 L25 90 L35 55 L5 35 L40 35 Z" fill="%23ffffff11"/></svg>'), linear-gradient(135deg, #143b64 0%, #1e5c8d 50%, #143b64 100%);
+    background-size: 100px 100px, cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Thêm hiệu ứng đèn Giáng sinh trên nền */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(90deg, 
+        var(--red) 0px, 
+        var(--red) 10px, 
+        var(--blue) 10px, 
+        var(--blue) 20px, 
+        #28a745 20px, 
+        #28a745 30px,
+        gold 30px,
+        gold 40px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    animation: twinkle 1.5s infinite alternate;
+    z-index: 20;
+}
+
+/* Thêm hiệu ứng đèn Giáng sinh dưới chân trang */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(90deg, 
+        var(--blue) 0px, 
+        var(--blue) 10px, 
+        var(--red) 10px, 
+        var(--red) 20px, 
+        gold 20px, 
+        gold 30px,
+        #28a745 30px,
+        #28a745 40px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    animation: twinkle 1.5s infinite alternate;
+    animation-delay: 0.75s;
+    z-index: 20;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Thêm hình ảnh cây thông nền */
+.bg-trees {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    height: 120px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="100" viewBox="0 0 80 100"><path d="M40 0 L55 30 L50 30 L65 60 L60 60 L80 100 L0 100 L20 60 L15 60 L30 30 L25 30 Z" fill="%23064420"/><rect x="35" y="80" width="10" height="20" fill="%23654321"/></svg>');
+    background-repeat: repeat-x;
+    background-size: 80px 100px;
+    background-position: bottom;
+    opacity: 0.7;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  width: 90%;
+  z-index: 10;
+  position: relative;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid white;
+}
+
+.profile h1 {
+  margin: 0.5rem 0;
+  font-size: 2rem;
+}
+
+.profile p {
+  margin: 0.25rem 0 1.5rem;
+  opacity: 0.8;
+  font-size: 1rem;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.snowfall-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+* {
+    font-family: 'Mountains of Christmas', serif;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --red: #dc3d2a;
+    --blue: #87ceeb;
+}
+
+.overflow {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    border-radius: 12px;
+}
+
+button {
+    position: relative;
+    width: 150px;
+    height: 50px;
+    border: 0px solid;
+    outline: 0px solid;
+    cursor: pointer;
+    background: var(--blue);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    display: block;
+    overflow: visible;
+}
+
+body {
+    background: linear-gradient(135deg, #143b64 0%, #1e5c8d 50%, #143b64 100%);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 0 L60 35 L95 35 L65 55 L75 90 L50 70 L25 90 L35 55 L5 35 L40 35 Z" fill="%23ffffff11"/></svg>'), linear-gradient(135deg, #143b64 0%, #1e5c8d 50%, #143b64 100%);
+    background-size: 100px 100px, cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Thêm hiệu ứng đèn Giáng sinh trên nền */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(90deg, 
+        var(--red) 0px, 
+        var(--red) 10px, 
+        var(--blue) 10px, 
+        var(--blue) 20px, 
+        #28a745 20px, 
+        #28a745 30px,
+        gold 30px,
+        gold 40px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    animation: twinkle 1.5s infinite alternate;
+    z-index: 20;
+}
+
+/* Thêm hiệu ứng đèn Giáng sinh dưới chân trang */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(90deg, 
+        var(--blue) 0px, 
+        var(--blue) 10px, 
+        var(--red) 10px, 
+        var(--red) 20px, 
+        gold 20px, 
+        gold 30px,
+        #28a745 30px,
+        #28a745 40px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    animation: twinkle 1.5s infinite alternate;
+    animation-delay: 0.75s;
+    z-index: 20;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Thêm hình ảnh cây thông nền */
+.bg-trees {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    height: 120px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="100" viewBox="0 0 80 100"><path d="M40 0 L55 30 L50 30 L65 60 L60 60 L80 100 L0 100 L20 60 L15 60 L30 30 L25 30 Z" fill="%23064420"/><rect x="35" y="80" width="10" height="20" fill="%23654321"/></svg>');
+    background-repeat: repeat-x;
+    background-size: 80px 100px;
+    background-position: bottom;
+    opacity: 0.7;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  width: 90%;
+  z-index: 10;
+  position: relative;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid white;
+}
+
+.profile h1 {
+  margin: 0.5rem 0;
+  font-size: 2rem;
+}
+
+.profile p {
+  margin: 0.25rem 0 1.5rem;
+  opacity: 0.8;
+  font-size: 1rem;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.snowfall-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+* {
+    font-family: 'Mountains of Christmas', serif;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --red: #dc3d2a;
+    --blue: #87ceeb;
+}
+
+.overflow {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    border-radius: 12px;
+}
+
+button {
+    position: relative;
+    width: 150px;
+    height: 50px;
+    border: 0px solid;
+    outline: 0px solid;
+    cursor: pointer;
+    background: var(--blue);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    display: block;
+    overflow: visible;
+}
+
+body {
+    background: linear-gradient(135deg, #143b64 0%, #1e5c8d 50%, #143b64 100%);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 0 L60 35 L95 35 L65 55 L75 90 L50 70 L25 90 L35 55 L5 35 L40 35 Z" fill="%23ffffff11"/></svg>'), linear-gradient(135deg, #143b64 0%, #1e5c8d 50%, #143b64 100%);
+    background-size: 100px 100px, cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Thêm hiệu ứng đèn Giáng sinh trên nền */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(90deg, 
+        var(--red) 0px, 
+        var(--red) 10px, 
+        var(--blue) 10px, 
+        var(--blue) 20px, 
+        #28a745 20px, 
+        #28a745 30px,
+        gold 30px,
+        gold 40px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    animation: twinkle 1.5s infinite alternate;
+    z-index: 20;
+}
+
+/* Thêm hiệu ứng đèn Giáng sinh dưới chân trang */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(90deg, 
+        var(--blue) 0px, 
+        var(--blue) 10px, 
+        var(--red) 10px, 
+        var(--red) 20px, 
+        gold 20px, 
+        gold 30px,
+        #28a745 30px,
+        #28a745 40px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    animation: twinkle 1.5s infinite alternate;
+    animation-delay: 0.75s;
+    z-index: 20;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Thêm hình ảnh cây thông nền */
+.bg-trees {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    height: 120px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="100" viewBox="0 0 80 100"><path d="M40 0 L55 30 L50 30 L65 60 L60 60 L80 100 L0 100 L20 60 L15 60 L30 30 L25 30 Z" fill="%23064420"/><rect x="35" y="80" width="10" height="20" fill="%23654321"/></svg>');
+    background-repeat: repeat-x;
+    background-size: 80px 100px;
+    background-position: bottom;
+    opacity: 0.7;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  width: 90%;
+  z-index: 10;
+  position: relative;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid white;
+}
+
+.profile h1 {
+  margin: 0.5rem 0;
+  font-size: 2rem;
+}
+
+.profile p {
+  margin: 0.25rem 0 1.5rem;
+  opacity: 0.8;
+  font-size: 1rem;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.snowfall-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+* {
+    font-family: 'Mountains of Christmas', serif;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --red: #dc3d2a;
+    --blue: #87ceeb;
+}
+
+.overflow {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    border-radius: 12px;
+}
+
+button {
+    position: relative;
+    width: 150px;
+    height: 50px;
+    border: 0px solid;
+    outline: 0px solid;
+    cursor: pointer;
+    background: var(--blue);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    display: block;
+    overflow: visible;
+}
+
+body {
+    background: linear-gradient(135deg, #143b64 0%, #1e5c8d 50%, #143b64 100%);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 0 L60 35 L95 35 L65 55 L75 90 L50 70 L25 90 L35 55 L5 35 L40 35 Z" fill="%23ffffff11"/></svg>'), linear-gradient(135deg, #143b64 0%, #1e5c8d 50%, #143b64 100%);
+    background-size: 100px 100px, cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Thêm hiệu ứng đèn Giáng sinh trên nền */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(90deg, 
+        var(--red) 0px, 
+        var(--red) 10px, 
+        var(--blue) 10px, 
+        var(--blue) 20px, 
+        #28a745 20px, 
+        #28a745 30px,
+        gold 30px,
+        gold 40px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    animation: twinkle 1.5s infinite alternate;
+    z-index: 20;
+}
+
+/* Thêm hiệu ứng đèn Giáng sinh dưới chân trang */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(90deg, 
+        var(--blue) 0px, 
+        var(--blue) 10px, 
+        var(--red) 10px, 
+        var(--red) 20px, 
+        gold 20px, 
+        gold 30px,
+        #28a745 30px,
+        #28a745 40px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    animation: twinkle 1.5s infinite alternate;
+    animation-delay: 0.75s;
+    z-index: 20;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Thêm hình ảnh cây thông nền */
+.bg-trees {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    height: 120px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="100" viewBox="0 0 80 100"><path d="M40 0 L55 30 L50 30 L65 60 L60 60 L80 100 L0 100 L20 60 L15 60 L30 30 L25 30 Z" fill="%23064420"/><rect x="35" y="80" width="10" height="20" fill="%23654321"/></svg>');
+    background-repeat: repeat-x;
+    background-size: 80px 100px;
+    background-position: bottom;
+    opacity: 0.7;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  width: 90%;
+  z-index: 10;
+  position: relative;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid white;
+}
+
+.profile h1 {
+  margin: 0.5rem 0;
+  font-size: 2rem;
+}
+
+.profile p {
+  margin: 0.25rem 0 1.5rem;
+  opacity: 0.8;
+  font-size: 1rem;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.snowfall-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+* {
+    font-family: 'Mountains of Christmas', serif;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --red: #dc3d2a;
+    --blue: #87ceeb;
+}
+
+.overflow {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    border-radius: 12px;
+}
+
+button {
+    position: relative;
+    width: 150px;
+    height: 50px;
+    border: 0px solid;
+    outline: 0px solid;
+    cursor: pointer;
+    background: var(--blue);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    display: block;
+    overflow: visible;
+}
+
+body {
+    background: linear-gradient(135deg, #143b64 0%, #1e5c8d 50%, #143b64 100%);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 0 L60 35 L95 35 L65 55 L75 90 L50 70 L25 90 L35 55 L5 35 L40 35 Z" fill="%23ffffff11"/></svg>'), linear-gradient(135deg, #143b64 0%, #1e5c8d 50%, #143b64 100%);
+    background-size: 100px 100px, cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Thêm hiệu ứng đèn Giáng sinh trên nền */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(90deg, 
+        var(--red) 0px, 
+        var(--red) 10px, 
+        var(--blue) 10px, 
+        var(--blue) 20px, 
+        #28a745 20px, 
+        #28a745 30px,
+        gold 30px,
+        gold 40px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    animation: twinkle 1.5s infinite alternate;
+    z-index: 20;
+}
+
+/* Thêm hiệu ứng đèn Giáng sinh dưới chân trang */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(90deg, 
+        var(--blue) 0px, 
+        var(--blue) 10px, 
+        var(--red) 10px, 
+        var(--red) 20px, 
+        gold 20px, 
+        gold 30px,
+        #28a745 30px,
+        #28a745 40px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    animation: twinkle 1.5s infinite alternate;
+    animation-delay: 0.75s;
+    z-index: 20;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Thêm hình ảnh cây thông nền */
+.bg-trees {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    height: 120px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="100" viewBox="0 0 80 100"><path d="M40 0 L55 30 L50 30 L65 60 L60 60 L80 100 L0 100 L20 60 L15 60 L30 30 L25 30 Z" fill="%23064420"/><rect x="35" y="80" width="10" height="20" fill="%23654321"/></svg>');
+    background-repeat: repeat-x;
+    background-size: 80px 100px;
+    background-position: bottom;
+    opacity: 0.7;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  width: 90%;
+  z-index: 10;
+  position: relative;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid white;
+}
+
+.profile h1 {
+  margin: 0.5rem 0;
+  font-size: 2rem;
+}
+
+.profile p {
+  margin: 0.25rem 0 1.5rem;
+  opacity: 0.8;
+  font-size: 1rem;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.snowfall-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+* {
+    font-family: 'Mountains of Christmas', serif;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --red: #dc3d2a;
+    --blue: #87ceeb;
+}
+
+.overflow {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    border-radius: 12px;
+}
+
+button {
+    position: relative;
+    width: 150px;
+    height: 50px;
+    border: 0px solid;
+    outline: 0px solid;
+    cursor: pointer;
+    background: var(--blue);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    display: block;
+    overflow: visible;
+}
+
+body {
+    background: linear-gradient(135deg, #143b64 0%, #1e5c8d 50%, #143b64 100%);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 0 L60 35 L95 35 L65 55 L75 90 L50 70 L25 90 L35 55 L5 35 L40 35 Z" fill="%23ffffff11"/></svg>'), linear-gradient(135deg, #143b64 0%, #1e5c8d 50%, #143b64 100%);
+    background-size: 100px 100px, cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Thêm hiệu ứng đèn Giáng sinh trên nền */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(90deg, 
+        var(--red) 0px, 
+        var(--red) 10px, 
+        var(--blue) 10px, 
+        var(--blue) 20px, 
+        #28a745 20px, 
+        #28a745 30px,
+        gold 30px,
+        gold 40px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    animation: twinkle 1.5s infinite alternate;
+    z-index: 20;
+}
+
+/* Thêm hiệu ứng đèn Giáng sinh dưới chân trang */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(90deg, 
+        var(--blue) 0px, 
+        var(--blue) 10px, 
+        var(--red) 10px, 
+        var(--red) 20px, 
+        gold 20px, 
+        gold 30px,
+        #28a745 30px,
+        #28a745 40px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    animation: twinkle 1.5s infinite alternate;
+    animation-delay: 0.75s;
+    z-index: 20;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Thêm hình ảnh cây thông nền */
+.bg-trees {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    height: 120px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="100" viewBox="0 0 80 100"><path d="M40 0 L55 30 L50 30 L65 60 L60 60 L80 100 L0 100 L20 60 L15 60 L30 30 L25 30 Z" fill="%23064420"/><rect x="35" y="80" width="10" height="20" fill="%23654321"/></svg>');
+    background-repeat: repeat-x;
+    background-size: 80px 100px;
+    background-position: bottom;
+    opacity: 0.7;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  width: 90%;
+  z-index: 10;
+  position: relative;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid white;
+}
+
+.profile h1 {
+  margin: 0.5rem 0;
+  font-size: 2rem;
+}
+
+.profile p {
+  margin: 0.25rem 0 1.5rem;
+  opacity: 0.8;
+  font-size: 1rem;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.snowfall-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+* {
+    font-family: 'Mountains of Christmas', serif;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --red: #dc3d2a;
+    --blue: #87ceeb;
+}
+
+.overflow {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    border-radius: 12px;
+}
+
+button {
+    position: relative;
+    width: 150px;
+    height: 50px;
+    border: 0px solid;
+    outline: 0px solid;
+    cursor: pointer;
+    background: var(--blue);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    display: block;
+    overflow: visible;
+}
+
+body {
+    background: linear-gradient(135deg, #143b64 0%, #1e5c8d 50%, #143b64 100%);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 0 L60 35 L95 35 L65 55 L75 90 L50 70 L25 90 L35 55 L5 35 L40 35 Z" fill="%23ffffff11"/></svg>'), linear-gradient(135deg, #143b64 0%, #1e5c8d 50%, #143b64 100%);
+    background-size: 100px 100px, cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Thêm hiệu ứng đèn Giáng sinh trên nền */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(90deg, 
+        var(--red) 0px, 
+        var(--red) 10px, 
+        var(--blue) 10px, 
+        var(--blue) 20px, 
+        #28a745 20px, 
+        #28a745 30px,
+        gold 30px,
+        gold 40px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    animation: twinkle 1.5s infinite alternate;
+    z-index: 20;
+}
+
+/* Thêm hiệu ứng đèn Giáng sinh dưới chân trang */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(90deg, 
+        var(--blue) 0px, 
+        var(--blue) 10px, 
+        var(--red) 10px, 
+        var(--red) 20px, 
+        gold 20px, 
+        gold 30px,
+        #28a745 30px,
+        #28a745 40px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    animation: twinkle 1.5s infinite alternate;
+    animation-delay: 0.75s;
+    z-index: 20;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Thêm hình ảnh cây thông nền */
+.bg-trees {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    height: 120px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="100" viewBox="0 0 80 100"><path d="M40 0 L55 30 L50 30 L65 60 L60 60 L80 100 L0 100 L20 60 L15 60 L30 30 L25 30 Z" fill="%23064420"/><rect x="35" y="80" width="10" height="20" fill="%23654321"/></svg>');
+    background-repeat: repeat-x;
+    background-size: 80px 100px;
+    background-position: bottom;
+    opacity: 0.7;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.santa {
+    width: 45px;
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    transition: 250ms;
+}
+
+.christmas-tree {
+    width: 30px;
+    position: absolute;
+    transform: translateY(30px);
+    transition: 300ms;
+    transition-delay: 500ms;
+}
+
+.christmas-tree-1 {
+    left: 0px;
+    top: 20px;
+}
+
+.christmas-tree-2 {
+    right: 0px;
+    top: 20px;
+}
+
+.cloud-container {
+    position: absolute;
+    width: 100%;
+    transform: translateY(-40px);
+    transition: 250ms;
+    transition-delay: 250ms;
+}
+
+.cloud {
+    fill: #fff;
+    position: absolute;
+}
+
+.cloud:nth-child(1) {
+    left: 30px;
+    top: 3px;
+    animation-name: cloud;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: backwards;
+}
+
+.cloud:nth-child(2) {
+    right: 30px;
+    top: 14px;
+    animation-name: cloud;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: backwards;
+}
+
+@keyframes cloud {
+    0% {
+        transform: translateX(0px);
+    }
+
+    50% {
+        transform: translateX(-4px);
+    }
+
+    100% {
+        transform: translateX(4px);
+    }
+}
+
+/* Sửa lỗi cho button */
+button {
+    position: relative;
+    width: 150px;
+    height: 50px;
+    border: 0px solid;
+    outline: 0px solid;
+    cursor: pointer;
+    background: var(--blue);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    display: block;
+    overflow: visible;
+}
+
+/* Phân biệt giữa snowflake trong button và snowflake của hiệu ứng tuyết rơi */
+button .snowflake {
+    position: absolute;
+    z-index: -1;
     opacity: 0;
+}
+
+button .snowflake:nth-child(1) {
+    transition: .8s;
+    filter: drop-shadow(0 0 10px #fffdef);
+    width: 30px;
+    height: 30px;
+    inset: 0;
+}
+
+button .snowflake:nth-child(2) {
+    transition: .8s;
+    filter: drop-shadow(0 0 10px #fffdef);
+    width: 20px;
+    height: 20px;
+    inset: 0;
+}
+
+button .snowflake:nth-child(3) {
+    transition: .8s;
+    filter: drop-shadow(0 0 10px #fffdef);
+    width: 40px;
+    height: 40px;
+    inset: 0;
+}
+
+button .snowflake:nth-child(4) {
+    transition: .8s;
+    filter: drop-shadow(0 0 10px #fffdef);
+    width: 10px;
+    height: 10px;
+    inset: 0;
+}
+
+button .snowflake:nth-child(5) {
+    transition: .8s;
+    filter: drop-shadow(0 0 10px #fffdef);
+    width: 8px;
+    height: 8px;
+    inset: 0;
+}
+
+/* Sửa CSS cho hiệu ứng tuyết rơi toàn trang */
+.snowfall-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5; /* Giữ z-index thấp hơn để không ảnh hưởng đến button */
+  overflow: hidden;
+}
+
+.snowfall-container .snowflake {
+  position: absolute;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+  z-index: 9;
+}
+
+/* Sửa CSS cho snowflake toàn trang */
+.snowflake-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.snowflake-container svg.snowflake {
+  opacity: 0.9;
+  position: absolute;
+  animation: snowfall linear infinite;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-5vh) translateX(0) rotate(0deg);
   }
-} 
+  100% {
+    transform: translateY(105vh) translateX(10vw) rotate(360deg);
+  }
+}
+
+/* hover state css */
+button:hover{
+    box-shadow: 0 0 25px var(--blue);
+    
+}
+
+button:hover .christmas-tree {
+    transform: translateY(0px);
+}
+
+
+button:hover .cloud-container {
+    transform: translateY(0px);
+}
+
+
+button:hover .snowflake:nth-child(1) {
+    top: 95%;
+    left: 25%;
+    animation-name: sun;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    opacity: 1;
+}
+
+button:hover .snowflake:nth-child(2) {
+    top: -35%;
+    left: 10%;
+    animation-name: sun;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    opacity: 1;
+}
+
+button:hover .snowflake:nth-child(3) {
+    opacity: 1;
+    top: -80%;
+    left: -30%;
+    animation-name: sun;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+button:hover .snowflake:nth-child(4) {
+    opacity: 1;
+    top: 120%;
+    left: 80%;
+    animation-name: sun;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+button:hover .snowflake:nth-child(5) {
+    opacity: 1;
+    top: 25%;
+    left: 115%;
+    animation-name: sun;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+button:hover .santa {
+    transform: translate(-30px, -40px);
+}
+
+button:hover .text-container {
+    transform: translateY(-100%);
+}
+
+.text-container {
+    color: white;
+    background: var(--red);
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 11;
+    transition: 250ms;
+    font-size: 20px;
+    top: 0;
+    left: 0;
+}
+
+/* sun animation */
+.sun {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    animation-name: sun;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes sun {
+    from {
+        transform: rotate(0turn);
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+/* Media Queries cho trang web responsive */
+@media screen and (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+  
+  .profile img {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .profile h1 {
+    font-size: 1.8rem;
+  }
+  
+  button {
+    width: 130px;
+    height: 45px;
+  }
+  
+  .christmas-tree {
+    width: 25px;
+  }
+  
+  .santa {
+    width: 40px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .profile img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .profile h1 {
+    font-size: 1.5rem;
+  }
+  
+  .profile p {
+    font-size: 0.9rem;
+  }
+  
+  button {
+    width: 120px;
+    height: 40px;
+  }
+  
+  .christmas-tree {
+    width: 20px;
+  }
+  
+  .santa {
+    width: 35px;
+  }
+  
+  .text-container {
+    font-size: 16px;
+  }
+  
+  .cloud {
+    transform: scale(0.8);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .profile img {
+    width: 80px;
+    height: 80px;
+    border-width: 2px;
+  }
+  
+  .profile h1 {
+    font-size: 1.3rem;
+  }
+  
+  .profile p {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  button {
+    width: 100px;
+    height: 35px;
+  }
+  
+  .christmas-tree {
+    width: 18px;
+  }
+  
+  .christmas-tree-1 {
+    left: -2px;
+  }
+  
+  .christmas-tree-2 {
+    right: -2px;
+  }
+  
+  .santa {
+    width: 30px;
+  }
+  
+  .text-container {
+    font-size: 14px;
+  }
+  
+  .overflow {
+    border-radius: 8px;
+  }
+  
+  /* Điều chỉnh animation snowfall để phù hợp với màn hình nhỏ */
+  @keyframes snowfall {
+    0% {
+      transform: translateY(-5vh) translateX(0) rotate(0deg);
+    }
+    100% {
+      transform: translateY(105vh) translateX(5vw) rotate(360deg);
+    }
+  }
+  
+  /* Đảm bảo trạng thái hover trên thiết bị cảm ứng */
+  button:active .snowflake:nth-child(1),
+  button:active .snowflake:nth-child(2),
+  button:active .snowflake:nth-child(3),
+  button:active .snowflake:nth-child(4),
+  button:active .snowflake:nth-child(5) {
+    opacity: 1;
+    animation-name: sun;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+  
+  button:active .santa {
+    transform: translate(-20px, -30px);
+  }
+  
+  button:active .text-container {
+    transform: translateY(-100%);
+  }
+  
+  button:active .christmas-tree {
+    transform: translateY(0px);
+  }
+  
+  button:active .cloud-container {
+    transform: translateY(0px);
+  }
+}
+
+/* Xử lý màn hình siêu nhỏ */
+@media screen and (max-width: 320px) {
+  .profile img {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .profile h1 {
+    font-size: 1.2rem;
+  }
+  
+  button {
+    width: 90px;
+    height: 32px;
+  }
+  
+  .christmas-tree {
+    width: 16px;
+    transform: translateY(20px);
+  }
+  
+  .text-container {
+    font-size: 12px;
+  }
+}
+
+/* Xử lý màn hình lớn */
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 600px;
+  }
+  
+  .profile img {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .profile h1 {
+    font-size: 2.5rem;
+  }
+  
+  button {
+    width: 170px;
+    height: 55px;
+  }
+  
+  .christmas-tree {
+    width: 35px;
+  }
+  
+  .santa {
+    width: 50px;
+  }
+  
+  .text-container {
+    font-size: 24px;
+  }
+}
