@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Playlist Nhạc🎄</title>
+    <link rel="stylesheet" href="music.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="snowflakes">
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❅</div>
+    </div>
+    
+    <div class="music-player">
+        <div class="player-header">
+            <h1 class="animated-title">🎄 <i class="fas fa-music"></i> Nhạc Trung 🎄</h1>
+            <p class="subtitle">🎵 ALLL NOOOOOO 🎵</p>
+        </div>
+        
+        <div class="player-container">
+            <div class="current-song">
+                <div class="song-info">
+                    <div class="song-image">
+                        <i class="fas fa-music rotating-icon"></i>
+                        <div class="christmas-lights">
+                            <div class="light red"></div>
+                            <div class="light green"></div>
+                            <div class="light yellow"></div>
+                            <div class="light blue"></div>
+                            <div class="light red"></div>
+                            <div class="light green"></div>
+                            <div class="light"></div>
+                            <div class="light"></div>
+                        </div>
+                        <div class="magic-sparkles">
+                            <div class="sparkle"></div>
+                            <div class="sparkle"></div>
+                            <div class="sparkle"></div>
+                            <div class="sparkle"></div>
+                        </div>
+                    </div>
+                    <div class="song-details">
+                        <h3 id="current-title" class="glowing-text">🎁 Chọn bài hát để phát 🎁</h3>
+                        <p id="current-artist" class="fade-in-text">🎅 Nghệ sĩ 🎅</p>
+                    </div>
+                </div>
+                
+                <div class="progress-container">
+                    <span id="current-time" class="time-display">0:00</span>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress"></div>
+                        <div class="progress-glow"></div>
+                    </div>
+                    <span id="duration" class="time-display">0:00</span>
+                </div>
+                
+                <div class="controls">
+                    <button id="prev-btn" class="control-btn">
+                        <i class="fas fa-step-backward"></i>
+                        <div class="btn-ripple"></div>
+                    </button>
+                    <button id="play-btn" class="control-btn play-btn">
+                        <i class="fas fa-play"></i>
+                        <div class="btn-ripple"></div>
+                    </button>
+                    <button id="next-btn" class="control-btn">
+                        <i class="fas fa-step-forward"></i>
+                        <div class="btn-ripple"></div>
+                    </button>
+                    <button id="shuffle-btn" class="control-btn">
+                        <i class="fas fa-random"></i>
+                        <div class="btn-ripple"></div>
+                    </button>
+                    <button id="repeat-btn" class="control-btn">
+                        <i class="fas fa-redo"></i>
+                        <div class="btn-ripple"></div>
+                    </button>
+                </div>
+                
+                <div class="volume-container">
+                    <i class="fas fa-volume-up volume-icon"></i>
+                    <input type="range" id="volume-slider" min="0" max="100" value="50">
+                    <div class="volume-waves">
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                        <div class="wave"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="playlist">
+                <div class="playlist-header">
+                    <h3 class="playlist-title">🎼 Danh sách phát 🎼</h3>
+                    <div class="search-container">
+                        <input type="text" id="search-input" placeholder="🔍 Tìm kiếm bài hát...">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                </div>
+                <div class="playlist-songs" id="playlist"></div>
+            </div>
+        </div>
+        
+        <audio id="audio" preload="metadata" crossorigin="anonymous">
+            <source type="audio/mpeg">
+            Trình duyệt của bạn không hỗ trợ phát audio.
+        </audio>
+    </div>
+    
+    <script src="music.js"></script>
+</body>
+</html>
