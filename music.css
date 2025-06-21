@@ -798,55 +798,258 @@ body {
     box-shadow: 0 6px 15px rgba(0,0,0,0.4), 0 0 20px rgba(255,107,107,0.5);
 }
 
-@media (max-width: 768px) {
+/* Desktop Large */
+@media (max-width: 1200px) {
+    .music-player {
+        max-width: 95%;
+    }
+}
+
+/* Desktop/Tablet Landscape */
+@media (max-width: 1024px) {
     .player-container {
-        grid-template-columns: 1fr;
         gap: 25px;
         padding: 25px;
-    }
-    
-    .song-info {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-    }
-    
-    .controls {
-        gap: 15px;
     }
     
     .control-btn {
         width: 50px;
         height: 50px;
-        font-size: 1.1em;
     }
     
     .play-btn {
-        width: 60px;
-        height: 60px;
+        width: 62px;
+        height: 62px;
     }
     
-    .player-header h1 {
-        font-size: 2.2em;
+    .playlist {
+        height: 480px;
+    }
+
+    .song-image {
+        width: 85px;
+        height: 85px;
+    }
+
+    .animated-title {
+        font-size: 2.5em;
+    }
+}
+
+/* Tablet Portrait */
+@media (max-width: 768px) {
+    .music-player {
+        padding: 12px;
+    }
+
+    .player-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    .song-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+    
+    .song-image {
+        width: 75px;
+        height: 75px;
+        font-size: 1.8em;
+        margin: 0 auto;
+    }
+    
+    .controls {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .control-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1em;
+    }
+    
+    .play-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 1.5em;
+    }
+    
+    .player-header {
+        margin-bottom: 20px;
+    }
+    
+    .animated-title {
+        font-size: 2em;
+    }
+    
+    .subtitle {
+        font-size: 0.95em;
     }
     
     .playlist {
         height: 400px;
     }
     
-    .snowflake {
+    .playlist-header h3 {
         font-size: 1.2em;
     }
     
+    .volume-waves,
+    .magic-sparkles,
+    .christmas-lights {
+        display: none;
+    }
+    
+    .snowflake {
+        font-size: 1em;
+    }
+
+    #search-input {
+        padding: 10px 40px 10px 15px;
+        font-size: 0.95em;
+    }
+
+    .progress-container {
+        gap: 10px;
+    }
+
+    .time-display {
+        font-size: 0.9em;
+    }
+}
+
+/* Mobile Large */
+@media (max-width: 576px) {
+    .music-player {
+        padding: 10px;
+    }
+
+    .player-container {
+        padding: 15px;
+        gap: 15px;
+        border-radius: 20px;
+    }
+    
+    .song-image {
+        width: 65px;
+        height: 65px;
+        font-size: 1.6em;
+    }
+    
+    .controls {
+        gap: 8px;
+    }
+    
+    .control-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 0.9em;
+    }
+    
+    .play-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3em;
+    }
+    
     .animated-title {
-        font-size: 2.2em;
+        font-size: 1.7em;
     }
     
-    .volume-waves {
-        display: none;
+    .subtitle {
+        font-size: 0.85em;
     }
     
-    .magic-sparkles {
-        display: none;
+    .playlist {
+        height: 350px;
+    }
+    
+    .song-item {
+        padding: 10px;
+        margin-bottom: 8px;
+        border-radius: 10px;
+    }
+    
+    .song-item .song-title {
+        font-size: 0.85em;
+        margin-left: 10px;
+    }
+    
+    .song-item .song-number,
+    .song-item .song-duration {
+        font-size: 0.75em;
+    }
+
+    .progress-bar {
+        height: 6px;
+    }
+    
+    #volume-slider {
+        height: 4px;
+    }
+
+    #volume-slider::-webkit-slider-thumb {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* Mobile Small */
+@media (max-width: 375px) {
+    .music-player {
+        padding: 8px;
+    }
+
+    .player-container {
+        padding: 12px;
+        gap: 12px;
+    }
+    
+    .song-image {
+        width: 60px;
+        height: 60px;
+        font-size: 1.4em;
+    }
+    
+    .animated-title {
+        font-size: 1.5em;
+    }
+    
+    .subtitle {
+        font-size: 0.8em;
+    }
+    
+    .controls {
+        gap: 6px;
+    }
+    
+    .control-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 0.85em;
+    }
+    
+    .play-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2em;
+    }
+
+    .playlist {
+        height: 320px;
+    }
+
+    .playlist-header h3 {
+        font-size: 1.1em;
+    }
+
+    #search-input {
+        padding: 8px 35px 8px 12px;
+        font-size: 0.9em;
     }
 }
